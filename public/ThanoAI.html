@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThanoAI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/thano-mark.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="theme-dark">
+  <div class="app">
+
+    <!-- Chat history and the new-chat button live here. -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1>ThanoAI</h1>
+        <button class="sidebar-close" id="sidebarCloseBtn">✕</button>
+      </div>
+
+      <div class="sidebar-section">
+        <button class="btn primary" id="newChatBtn">+ New Chat</button>
+      </div>
+
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Chats</h2>
+        <ul class="chat-list" id="chatList"></ul>
+      </div>
+
+    </aside>
+
+    <!-- The rest of the app goes in the main panel. -->
+    <main class="main">
+
+      <!-- Header controls -->
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="topbar-title">
+          <span class="logo-circle">T</span>
+          <span>ThanoAI</span>
+        </div>
+        <div class="theme-shortcut" aria-label="Appearance">
+          <span>Light</span>
+          <button class="theme-switch" id="themeSwitch" type="button" role="switch" aria-label="Dark mode" aria-checked="true"><span class="theme-switch-knob"></span></button>
+          <span>Dark</span>
+        </div>
+        <div class="topbar-actions" id="topbarActions">
+          <button class="settings-button" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settingsPanel"><span class="settings-icon" aria-hidden="true">⚙</span><span class="settings-label">Settings</span></button>
+          <section class="settings-panel" id="settingsPanel" role="dialog" aria-label="Settings" hidden>
+            <h2>Settings</h2>
+            <div class="settings-option">
+              <div class="settings-option-copy"><span class="settings-option-title">Reduce motion</span><span class="settings-option-description">Turn off interface animations</span></div>
+              <label class="mini-switch"><input id="motionToggle" type="checkbox" aria-label="Reduce motion" /><span class="mini-switch-track"><span></span></span></label>
+            </div>
+            <p class="settings-hint">Change the theme with the switch in the header.</p>
+          </section>
+        </div>
+      </header>
+
+      <section class="welcome-screen" id="welcomeScreen" aria-labelledby="welcomeTitle">
+        <div class="welcome-content">
+          <p class="welcome-kicker">A little help, right when you need it</p>
+          <h2 id="welcomeTitle">What are you figuring out?</h2>
+          <p class="welcome-copy">Ask a question, share an image, or do both. ThanoAI can help explain things step by step.</p>
+        </div>
+      </section>
+
+      <!-- Messages get added here as the conversation grows. -->
+      <section class="chat-container" id="chatContainer" aria-live="polite">
+        <!-- JavaScript fills this area with messages. -->
+      </section>
+
+      <!-- This appears while the server is working on a reply. -->
+      <div id="typing-indicator" class="typing-indicator hidden">
+        <div class="typing-bubble"></div>
+      </div>
+
+      <!-- Message box and image upload -->
+      <section class="input-area" aria-label="Message composer">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="userInput"
+            class="chat-input"
+            placeholder="Ask ThanoAI anything..."
+            aria-label="Your message"
+            autocomplete="off"
+          />
+          <div class="composer-actions">
+            <button class="attach-btn" id="attachBtn" title="Add image" aria-label="Add an image">
+              <span aria-hidden="true">＋</span><span>Add image</span>
+            </button>
+            <button class="send-btn" id="sendBtn">Send <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+
+        <input type="file" id="imageInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none;" />
+
+        <div class="image-preview" id="imagePreview" style="display:none;">
+          <img id="imagePreviewImg" alt="Selected image preview" />
+          <button class="image-preview-clear" id="clearImageBtn">✕</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
